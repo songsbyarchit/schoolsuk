@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'Sharp Sans';
+    src: url('../fonts/Sharp Sans.otf') format('opentype');
+}
+
+body {
+    font-family: 'Sharp Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.light {
+    background: #ffffff;
+    color: #222;
+}
+
+body.dark {
+    background: #121212;
+    color: #f0f0f0;
+}
+
+header {
+    padding: 1rem 2rem;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body.dark header {
+    background: #1f1f1f;
+}
+
+nav a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: #0073e6;
+}
+
+body.dark nav a {
+    color: #8ab4f8;
+}
+
+#mode-toggle {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: inherit;
+}
+
+.cta-bar {
+    display: flex;
+    justify-content: center;
+    background: #eee;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+body.dark .cta-bar {
+    background: #2a2a2a;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.tile h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+video {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.case-studies,
+.content {
+    padding: 2rem;
+}

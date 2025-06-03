@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}UKI Schools{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+</head>
+<body class="light">
+    <header>
+        <h1>UKI Schools – Cisco</h1>
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="/" class="logo">UKI Schools</a>
+            </div>
+            <div class="nav-links">
+                <a href="/meet-the-team">Team</a>
+                <a href="/products">Products</a>
+                <a href="/stories">Stories</a>
+                <a href="/trial">Trial</a>
+            </div>
+            <div class="nav-right">
+                <button id="mode-toggle" title="Toggle Light/Dark Mode">☀️ / 🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

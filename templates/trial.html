@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Trial{% endblock %}
+
+{% block content %}
+    <section class="content">
+        <h2>Ready to try it out?</h2>
+        <p>We offer free trials of Cisco Meraki and Umbrella tailored for UKI schools.</p>
+        <form>
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="email">School Email:</label><br>
+            <input type="email" id="email" name="email"><br><br>
+
+            <label for="interest">Which product are you interested in?</label><br>
+            <select id="interest" name="interest">
+                <option>Meraki Wi-Fi</option>
+                <option>MV Cameras</option>
+                <option>MT Sensors</option>
+                <option>Umbrella</option>
+                <option>Duo</option>
+            </select><br><br>
+
+            <button type="submit">Request Demo</button>
+        </form>
+    </section>
+{% endblock %}

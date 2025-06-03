@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="cta-bar">
+    <a href="#">SRP doc vs gov guidelines</a>
+    <a href="#">Written content</a>
+    <a href="#">Signup to webinar/mailing list</a>
+</section>
+
+<section class="video-grid">
+    <div class="tile">
+        <h2>10-year ready Wi-Fi</h2>
+        <video src="{{ url_for('static', filename='videos/wifi-7.mp4') }}" controls></video>
+    </div>
+    <div class="tile">
+        <h2>Time savings via bulk config</h2>
+        <video src="{{ url_for('static', filename='videos/bulk-switchport.mp4') }}" controls></video>
+    </div>
+    <div class="tile">
+        <h2>Cost savings via port scheduling</h2>
+        <video src="{{ url_for('static', filename='videos/port-schedules.mp4') }}" controls></video>
+    </div>
+    <div class="tile">
+        <h2>Effortless physical security → MV</h2>
+        <video src="{{ url_for('static', filename='videos/mv-plug-play.mp4') }}" controls></video>
+    </div>
+    <div class="tile">
+        <h2>Motion Search to safeguard fast</h2>
+        <video src="{{ url_for('static', filename='videos/mt15-features.mp4') }}" controls></video>
+    </div>
+</section>
+
+<section class="case-studies">
+    <h3>Case Study 3</h3>
+    <p>ISC Velden – Future-ready infrastructure.</p>
+    <h3>Case Study 4</h3>
+    <p>Wrexham Council – Cost-saving config policies.</p>
+</section>
+{% endblock %}

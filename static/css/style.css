@@ -53,18 +53,23 @@ body.dark .navbar {
 
 .nav-links.centered a {
     text-decoration: none;
-    font-weight: 500;
-    color: #0073e6;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #444;
     transition: color 0.2s ease;
 }
 
 .nav-links.centered a:hover {
-    color: #005bb5;
-    text-decoration: underline;
+    color: #000;
+    text-decoration: none;
 }
 
 body.dark .nav-links.centered a {
-    color: #8ab4f8;
+    color: #ccc;
+}
+
+body.dark .nav-links.centered a:hover {
+    color: #fff;
 }
 
 #mode-toggle {
@@ -180,8 +185,6 @@ input:checked + .slider:before {
     color: #fff;
     padding: 1rem 2rem;
     font-size: 1.1rem;
-    font-weight: bold;
-    border: 4px solid #ccc;
     border-radius: 12px;
     opacity: 0;
     transition: opacity 0.3s ease;

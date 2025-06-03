@@ -60,7 +60,8 @@ body.dark .navbar {
 }
 
 .nav-links.centered a:hover {
-    color: #000;
+    color: #222;
+    filter: brightness(80%);
     text-decoration: none;
 }
 
@@ -70,6 +71,7 @@ body.dark .nav-links.centered a {
 
 body.dark .nav-links.centered a:hover {
     color: #fff;
+    filter: brightness(120%);
 }
 
 #mode-toggle {
@@ -214,4 +216,40 @@ body.dark .product-tile {
 
 body.dark .product-tile p {
     color: #d0d0d0;
+}
+
+a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #000;
+    text-shadow: 0 0 0.5px rgba(0,0,0,0.2);
+}
+
+body.dark a {
+    color: #bbb;
+}
+
+body.dark a:hover {
+    color: #fff;
+    font-weight: 600;
+}
+
+.theme-toggle-container {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: inherit;
+}
+
+#mode-label {
+    white-space: nowrap;
 }

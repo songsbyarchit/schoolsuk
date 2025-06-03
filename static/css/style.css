@@ -196,3 +196,22 @@ input:checked + .slider:before {
 .video-wrapper:hover .hover-prompt {
     opacity: 1;
 }
+
+.product-tile {
+    background-color: #f2f2f2;
+    border: none;
+    color: #222;
+}
+
+.product-tile p {
+    color: #444;
+}
+
+body.dark .product-tile {
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+body.dark .product-tile p {
+    color: #d0d0d0;
+}

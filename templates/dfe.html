@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}DfE Alignment{% endblock %}
+
+{% block content %}
+<section class="content">
+    <h2 style="text-align: center; margin-bottom: 1rem;">DfE Standards Alignment</h2>
+    <p style="max-width: 800px; margin: 0 auto 2rem; text-align: center;">
+        Cisco Meraki is proud to partner with UK schools in delivering solutions that align with DfE standards—empowering secure, scalable, and future-ready digital infrastructure.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 2rem auto;">
+        <div class="product-tile" style="padding: 2rem; border-radius: 12px;">
+            <h3>Core Switching</h3>
+            <p>Resilient core switches like Catalyst 9300X with StackPower and multi-gig ports meet DfE requirements for uptime, bandwidth, and future-readiness.</p>
+        </div>
+        <div class="product-tile" style="padding: 2rem; border-radius: 12px;">
+            <h3>Edge Switching</h3>
+            <p>Edge switches like MS150 provide 802.3bt PoE, bonded 10G uplinks, and NCSC-compliant segmentation—aligning with DfE switching standards.</p>
+        </div>
+        <div class="product-tile" style="padding: 2rem; border-radius: 12px;">
+            <h3>Wireless (Wi-Fi 7)</h3>
+            <p>Tri-band Wi-Fi 6/6E/7 access points (e.g. CW9172) meet DfE specs for certified, high-density wireless with robust encryption and policy controls.</p>
+        </div>
+        <div class="product-tile" style="padding: 2rem; border-radius: 12px;">
+            <h3>IoT Sensors & Cameras</h3>
+            <p>Smart sensors (MT15) and secure MV cameras offer air quality, vaping detection, and IP66-rated outdoor surveillance—supporting safeguarding and DfE compliance.</p>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem;">
+        <a href="/static/resources/DfE_cisco_mapping.pdf" download
+           style="display: inline-block; padding: 1rem 2rem; background: #0073e6; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
+            Download: Good, Better, Best Sizing Guide (PDF)
+        </a>
+    </div>
+</section>
+{% endblock %}

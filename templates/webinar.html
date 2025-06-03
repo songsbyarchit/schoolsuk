@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Webinar Giveaway{% endblock %}
+
+{% block content %}
+<section class="content">
+    <h2 style="text-align: center; margin-bottom: 1rem;">Sign up for our Education Webinar</h2>
+    <p style="text-align: center; max-width: 600px; margin: 0 auto 2rem;">
+        Join our upcoming webinar and get a chance to win a <strong>FREE Meraki MT15 sensor</strong> (Air Quality + CO₂) for your school.
+    </p>
+    <form style="max-width: 500px; margin: 0 auto;">
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name" required style="width: 100%; padding: 0.5rem;"><br><br>
+
+        <label for="email">School Email:</label><br>
+        <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem;"><br><br>
+
+        <label for="role">Your Role:</label><br>
+        <select id="role" name="role" required style="width: 100%; padding: 0.5rem;">
+            <option value="">Select your role</option>
+            <option>IT Manager</option>
+            <option>Senior Leadership Team</option>
+            <option>Teacher</option>
+            <option>Governor</option>
+            <option>Other</option>
+        </select><br><br>
+
+        <label>
+            <input type="checkbox" name="marketing" required>
+            By signing this form, I agree to receive marketing communications from Cisco.
+        </label><br><br>
+
+        <button type="submit" style="padding: 0.7rem 1.5rem;">Register for Webinar</button>
+    </form>
+</section>
+{% endblock %}

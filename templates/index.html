@@ -1,26 +1,62 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
+
 {% block content %}
 <section class="video-grid">
     <div class="tile">
-        <h2>10-year ready Wi-Fi</h2>
-        <video src="{{ url_for('static', filename='videos/wifi-7.mp4') }}" controls></video>
+        <h2>Future-proof your network with 10-year-ready Wi-Fi 7</h2>
+        <video 
+            src="{{ url_for('static', filename='videos/wifi-7.mp4') }}"
+            muted
+            playsinline
+            preload="metadata"
+            onmouseover="this.play()" 
+            onmouseout="this.pause(); this.currentTime = 0;"
+        ></video>
     </div>
     <div class="tile">
-        <h2>Time savings via bulk config</h2>
-        <video src="{{ url_for('static', filename='videos/bulk-switchport.mp4') }}" controls></video>
+        <h2>Configure switches in bulk and save hours of admin time</h2>
+        <video 
+            src="{{ url_for('static', filename='videos/bulk-switchport.mp4') }}"
+            muted
+            playsinline
+            preload="metadata"
+            onmouseover="this.play()" 
+            onmouseout="this.pause(); this.currentTime = 0;"
+        ></video>
     </div>
     <div class="tile">
-        <h2>Cost savings via port scheduling</h2>
-        <video src="{{ url_for('static', filename='videos/port-schedules.mp4') }}" controls></video>
+        <h2>Cut energy costs with scheduled switch port shutdown</h2>
+        <video 
+            src="{{ url_for('static', filename='videos/port-schedules.mp4') }}"
+            muted
+            playsinline
+            preload="metadata"
+            onmouseover="this.play()" 
+            onmouseout="this.pause(); this.currentTime = 0;"
+        ></video>
     </div>
     <div class="tile">
-        <h2>Effortless physical security → MV</h2>
-        <video src="{{ url_for('static', filename='videos/mv-plug-play.mp4') }}" controls></video>
+        <h2>Deploy cameras in minutes with plug-and-play MV security</h2>
+        <video 
+            src="{{ url_for('static', filename='videos/mv-plug-play.mp4') }}"
+            muted
+            playsinline
+            preload="metadata"
+            onmouseover="this.play()" 
+            onmouseout="this.pause(); this.currentTime = 0;"
+        ></video>
     </div>
     <div class="tile">
-        <h2>Motion Search to safeguard fast</h2>
-        <video src="{{ url_for('static', filename='videos/mt15-features.mp4') }}" controls></video>
+        <h2>Find safeguarding footage in seconds with Motion Search</h2>
+        <video 
+            src="{{ url_for('static', filename='videos/mt15-features.mp4') }}"
+            muted
+            playsinline
+            preload="metadata"
+            onmouseover="this.play()" 
+            onmouseout="this.pause(); this.currentTime = 0;"
+        ></video>
     </div>
 </section>
 

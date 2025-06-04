@@ -297,3 +297,7 @@ body.dark a:hover {
 .team-section div {
     gap: 2rem 2rem !important;
 }
+
+html {
+    scroll-behavior: smooth;
+}

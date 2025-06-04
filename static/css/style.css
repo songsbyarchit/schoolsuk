@@ -233,6 +233,11 @@ a {
     color: #555;
     text-decoration: none;
     transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.navbar a,
+.cta-bar a,
+.download-button {
     font-weight: bold;
 }
 

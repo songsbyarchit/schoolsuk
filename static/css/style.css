@@ -173,9 +173,14 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
+.video-wrapper:hover .hover-prompt {
+    opacity: 1;
+    margin-bottom: 800px;
+}
+
 .hover-prompt {
     position: absolute;
-    top: 50%;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: rgba(50, 50, 50, 0.85);

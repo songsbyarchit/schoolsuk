@@ -122,12 +122,6 @@ video {
     padding: 2rem;
 }
 
-.theme-toggle-container {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-}
-
 .switch {
     position: relative;
     display: inline-block;
@@ -175,7 +169,6 @@ input:checked + .slider:before {
 
 .video-wrapper:hover .hover-prompt {
     opacity: 1;
-    margin-bottom: 800px;
 }
 
 .hover-prompt {
@@ -208,21 +201,32 @@ input:checked + .slider:before {
 
 .product-tile {
     background-color: #f2f2f2;
-    border: none;
     color: #222;
+    min-height: 200px;
+    padding: 2rem;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.product-tile p {
-    color: #444;
+.product-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 body.dark .product-tile {
     background-color: #1f1f1f;
-    color: #ffffff;
+    color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-body.dark .product-tile p {
-    color: #d0d0d0;
+body.dark .product-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
 }
 
 a {
@@ -270,4 +274,17 @@ body.dark a:hover {
 .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.case-studies a,
+.products-page .product-tile,
+.content .product-tile,
+.team-section .product-tile {
+    display: block;
+}
+
+.case-studies div,
+.products-page div,
+.team-section div {
+    gap: 2rem 2rem !important;
 }

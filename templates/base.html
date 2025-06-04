@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </head>
 <body class="light">
     <header>
-        <h1><a href="/" style="text-decoration: none; color: inherit;">UK Schools – Cisco</a></h1>
+        <h1 class="site-title"><a href="/" style="text-decoration: none; color: inherit;">UK Schools – Cisco</a></h1>
         <div class="theme-toggle-container">
             <label class="switch">
                 <input type="checkbox" id="mode-toggle">
@@ -52,5 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
     <main>
         {% block content %}{% endblock %}
     </main>
+
+<script>
+document.querySelectorAll('a:not(.navbar a):not(.site-title a)').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && !href.startsWith('#') && !href.startsWith('javascript:') && !href.startsWith('/')) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+    }
+});
+</script>
 </body>
 </html>

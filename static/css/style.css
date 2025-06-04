@@ -213,14 +213,19 @@ input:checked + .slider:before {
 
 .product-tile:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+body.light .product-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     cursor: pointer;
 }
 
 body.dark .product-tile {
     background-color: #1f1f1f;
     color: #fff;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 body.dark .product-tile:hover {

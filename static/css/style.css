@@ -272,6 +272,7 @@ body.dark a:hover {
 
 #mode-label {
     white-space: nowrap;
+    font-weight: bold;
 }
 
 .reveal {

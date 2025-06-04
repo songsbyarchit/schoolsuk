@@ -1,0 +1,919 @@
+./
+  .DS_Store [skipped]
+  .env [skipped]
+  .gitignore [skipped]
+  README.md [skipped]
+  app.py
+    from flask import Flask, render_template
+    
+    app = Flask(__name__)
+    
+    @app.route('/')
+    def home():
+        return render_template('index.html')
+    
+    @app.route('/meet-the-team')
+    def team():
+        return render_template('meet-the-team.html')
+    
+    @app.route('/products')
+    def products():
+        return render_template('products.html')
+    
+    @app.route('/stories')
+    def stories():
+        return render_template('stories.html')
+    
+    @app.route('/trial')
+    def trial():
+        return render_template('trial.html')
+    
+    @app.route('/dfe')
+    def dfe():
+        return render_template('dfe.html')
+    
+    @app.route('/webinar')
+    def webinar():
+        return render_template('webinar.html')
+    
+    if __name__ == '__main__':
+        app.run(debug=True, port=5050)
+  project_snapshot.py
+    import os
+    
+    # Settings
+    output_file = "project_snapshot.txt"
+    include_extensions = {".html", ".htm", ".js", ".css", ".py", ".json", ".txt"}
+    exclude_dirs = {".git", "__pycache__", "node_modules", "venv", ".venv", ".idea", ".DS_Store"}
+    
+    def is_valid_file(file_name):
+        return any(file_name.endswith(ext) for ext in include_extensions)
+    
+    def should_exclude_dir(dir_name):
+        return any(part in exclude_dirs for part in dir_name.split(os.sep))
+    
+    def generate_snapshot(root_dir="."):
+        with open(output_file, "w", encoding="utf-8") as f:
+            for dirpath, dirnames, filenames in os.walk(root_dir):
+                # Skip excluded directories
+                if should_exclude_dir(dirpath):
+                    continue
+    
+                depth = dirpath.count(os.sep)
+                indent = "  " * depth
+                f.write(f"{indent}{os.path.basename(dirpath)}/\n")
+    
+                for filename in sorted(filenames):
+                    file_path = os.path.join(dirpath, filename)
+                    if is_valid_file(filename):
+                        file_indent = "  " * (depth + 1)
+                        f.write(f"{file_indent}{filename}\n")
+                        try:
+                            with open(file_path, "r", encoding="utf-8") as code_file:
+                                content = code_file.read()
+                                for line in content.splitlines():
+                                    f.write(f"{file_indent}  {line}\n")
+                        except Exception as e:
+                            f.write(f"{file_indent}  [Error reading file: {e}]\n")
+                    else:
+                        file_indent = "  " * (depth + 1)
+                        f.write(f"{file_indent}{filename} [skipped]\n")
+    
+    if __name__ == "__main__":
+        generate_snapshot()
+        print(f"Snapshot saved to {output_file}")
+  project_snapshot.txt
+  requirements.txt
+    blinker==1.9.0
+    click==8.2.1
+    Flask==3.1.1
+    itsdangerous==2.2.0
+    Jinja2==3.1.6
+    MarkupSafe==3.0.2
+    python-dotenv==1.1.0
+    Werkzeug==3.1.3
+  static/
+    css/
+      style.css
+        @font-face {
+            font-family: 'Sharp Sans';
+            src: url('../fonts/Sharp Sans.otf') format('opentype');
+        }
+        
+        body {
+            font-family: 'Sharp Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        body.light {
+            background: #ffffff;
+            color: #222;
+        }
+        
+        body.dark {
+            background: #121212;
+            color: #f0f0f0;
+        }
+        
+        header {
+            padding: 1rem 2rem;
+            background: #f5f5f5;
+        }
+        
+        body.dark header {
+            background: #1f1f1f;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        body.dark .navbar {
+            background-color: #1f1f1f;
+        }
+        
+        .nav-links.centered {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links.centered a {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #444;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-links.centered a:hover {
+            color: #222;
+            filter: brightness(80%);
+            text-decoration: none;
+        }
+        
+        body.dark .nav-links.centered a {
+            color: #ccc;
+        }
+        
+        body.dark .nav-links.centered a:hover {
+            color: #fff;
+            filter: brightness(120%);
+        }
+        
+        #mode-toggle {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            color: inherit;
+        }
+        
+        .cta-bar {
+            display: flex;
+            justify-content: center;
+            background: #eee;
+            padding: 1rem;
+            gap: 2rem;
+        }
+        
+        body.dark .cta-bar {
+            background: #2a2a2a;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            padding: 2rem;
+            gap: 2rem;
+        }
+        
+        .tile h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        video {
+            width: 100%;
+            border-radius: 8px;
+            outline: none;
+            pointer-events: auto;
+        }
+        
+        .case-studies,
+        .content {
+            padding: 2rem;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .video-wrapper:hover .hover-prompt {
+            opacity: 1;
+        }
+        
+        .hover-prompt {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(50, 50, 50, 0.85);
+            color: #fff;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            filter: brightness(50%);
+            transition: filter 0.3s ease;
+        }
+        
+        .video-wrapper:hover {
+            filter: brightness(100%);
+        }
+        
+        .product-tile {
+            background-color: #f2f2f2;
+            color: #222;
+            min-height: 200px;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .product-tile:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+        
+        body.light .product-tile:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+        
+        body.dark .product-tile {
+            background-color: #1f1f1f;
+            color: #fff;
+        }
+        
+        body.dark .product-tile:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+        
+        a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.2s ease, text-shadow 0.2s ease;
+        }
+        
+        .navbar a,
+        .cta-bar a,
+        .download-button {
+            font-weight: bold;
+        }
+        
+        a:hover {
+            color: #000;
+            text-shadow: 0 0 0.5px rgba(0,0,0,0.2);
+        }
+        
+        body.dark a {
+            color: #bbb;
+        }
+        
+        body.dark a:hover {
+            color: #fff;
+        }
+        
+        .theme-toggle-container {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: inherit;
+        }
+        
+        #mode-label {
+            white-space: nowrap;
+            font-weight: bold;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .case-studies a,
+        .products-page .product-tile,
+        .content .product-tile,
+        .team-section .product-tile {
+            display: block;
+        }
+        
+        .case-studies div,
+        .products-page div,
+        .team-section div {
+            gap: 2rem 2rem !important;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+    images/
+      .DS_Store [skipped]
+      DfE_cisco_mapping.pdf [skipped]
+      archit.png [skipped]
+      ben.png [skipped]
+      dan.png [skipped]
+      marianne.png [skipped]
+      paul.png [skipped]
+      rhiona.png [skipped]
+      shimon.png [skipped]
+      products/
+        catalyst.avif [skipped]
+        mt15.avif [skipped]
+    js/
+      darkmode.js
+        document.addEventListener("DOMContentLoaded", () => {
+            const body = document.body;
+            const toggle = document.getElementById("mode-toggle");
+        
+            // Apply saved theme
+            const savedMode = localStorage.getItem("theme");
+            if (savedMode === "dark") {
+                body.classList.remove("light");
+                body.classList.add("dark");
+                toggle.checked = true;
+            }
+        
+            toggle.addEventListener("click", () => {
+                const isDark = body.classList.contains("dark");
+                body.classList.toggle("dark");
+                body.classList.toggle("light");
+                localStorage.setItem("theme", isDark ? "light" : "dark");
+            });
+        
+            // Reveal animations
+            const reveals = document.querySelectorAll('.reveal');
+        
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // remove if you want animation to repeat
+                    }
+                });
+            }, { threshold: 0.1 });
+        
+            reveals.forEach(el => observer.observe(el));
+        });
+    resources/
+      dfe_cisco_mapping.pdf [skipped]
+    videos/
+      bulk-switchport.mp4 [skipped]
+      mt15-features.mp4 [skipped]
+      mv-plug-play.mp4 [skipped]
+      port-schedules.mp4 [skipped]
+      wifi-7.mp4 [skipped]
+    fonts/
+  templates/
+    base.html
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <title>{% block title %}UKI Schools{% endblock %}</title>
+          <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+          <script defer src="{{ url_for('static', filename='js/darkmode.js') }}">
+          </script>
+          <script>
+      document.addEventListener("DOMContentLoaded", () => {
+          const videos = document.querySelectorAll("video");
+      
+          function handleFullscreenChange() {
+              const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement;
+              videos.forEach(video => {
+                  const isFullscreen = (video === fullscreenElement);
+                  video.controls = isFullscreen;
+                  if (!isFullscreen) video.muted = true;
+              });
+          }
+      
+          document.addEventListener("fullscreenchange", handleFullscreenChange);
+          document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+      
+      });
+      </script>
+      </head>
+      <body class="light">
+          <header>
+              <h1 class="site-title"><a href="/" style="text-decoration: none; color: inherit;">UK Schools – Cisco</a></h1>
+              <div class="theme-toggle-container">
+                  <label class="switch">
+                      <input type="checkbox" id="mode-toggle">
+                      <span class="slider round"></span>
+                  </label>
+                  <span id="mode-label">Dark Mode</span>
+              </div>
+              <nav class="navbar">
+                  <div class="nav-left">
+                  </div>
+                  <div class="nav-links centered">
+                      <a href="/">Home</a>
+                      <a href="/meet-the-team">Our Team</a>
+                      <a href="/#stories">Stories</a>
+                      <a href="/products">Products</a>
+                      <a href="/dfe">DfE Alignment</a>
+                      <a href="/trial">Free Trial</a>
+                      <a href="/webinar">Win a Sensor!</a>
+                  </div>
+              </nav>
+          </header>
+      
+          <main>
+              {% block content %}{% endblock %}
+          </main>
+      
+      <script>
+      document.querySelectorAll('a:not(.navbar a):not(.site-title a)').forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && !href.startsWith('#') && !href.startsWith('javascript:') && !href.startsWith('/')) {
+              link.setAttribute('target', '_blank');
+              link.setAttribute('rel', 'noopener noreferrer');
+          }
+      });
+      </script>
+      </body>
+      </html>
+    dfe.html
+      {% extends "base.html" %}
+      {% block title %}DfE Alignment{% endblock %}
+      
+      {% block content %}
+      <section class="content">
+          <h2 class="reveal" style="text-align: center; margin-bottom: 1rem;">DfE Standards Alignment</h2>
+          <p class="reveal" style="max-width: 800px; margin: 0 auto 2rem; text-align: center;">
+          Cisco is proud to partner with UK schools in delivering solutions that align with DfE standards—empowering secure, scalable, and future-ready digital infrastructure.
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1000px; margin: 2rem auto;">
+              <a href="https://meraki.cisco.com/en-uk/product/switches/catalyst-9300-m/" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 2rem; border-radius: 12px;">
+                      <h3>Core Switching</h3>
+                      <p>Resilient core switches like Catalyst 9300X with StackPower and multi-gig ports meet DfE requirements for uptime, bandwidth, and future-readiness.</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/en-uk/product/switches/access-switches/ms150/" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 2rem; border-radius: 12px;">
+                      <h3>Edge Switching</h3>
+                      <p>Edge switches like MS150 provide 802.3bt PoE, bonded 10G uplinks, and NCSC-compliant segmentation—aligning with DfE switching standards.</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/en-uk/product/wi-fi/indoor-access-points/cw9172i/" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 2rem; border-radius: 12px;">
+                      <h3>Wireless (Wi-Fi 7)</h3>
+                      <p>Tri-band Wi-Fi 6/6E/7 access points (e.g. CW9172) meet DfE specs for certified, high-density wireless with robust encryption and policy controls.</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/en-uk/products/#cis" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 2rem; border-radius: 12px;">
+                      <h3>IoT Sensors & Cameras</h3>
+                      <p>Smart sensors (MT15) and secure MV cameras offer air quality, vaping detection, and IP66-rated outdoor surveillance—supporting safeguarding and DfE compliance.</p>
+                  </div>
+              </a>
+          </div>
+      
+          <div style="text-align: center; margin-top: 2rem;">
+              <a href="/static/resources/DfE_cisco_mapping.pdf" download
+                 style="display: inline-block; padding: 1rem 2rem; background: #0073e6; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
+                  Download: Good, Better, Best Sizing Guide (PDF)
+              </a>
+          </div>
+      </section>
+      {% endblock %}
+    index.html
+      {% extends "base.html" %}
+      {% block title %}Home{% endblock %}
+      
+      {% block content %}
+      
+          <h1 class="reveal" style="text-align: center; font-size: 1.8rem; margin-top: 2.5rem; margin-left: 25rem; margin-right: 25rem;">
+              Disover how Cisco powers simple, secure & scalable digital teaching & learning<br>in under a minute...
+          </h1>
+      <section class="video-grid">
+          <div class="tile reveal">
+              <h2>Deploy Wi-Fi 7 to meet modern digital learning needs (59s)</h2>
+              <div class="video-wrapper">
+                  <video 
+                      src="{{ url_for('static', filename='videos/wifi-7.mp4') }}"
+                      muted
+                      playsinline
+                      preload="metadata"
+                      onmouseover="this.play()" 
+                      onmouseout="this.pause(); this.currentTime = 0;"
+                      onclick="this.muted=false;this.requestFullscreen();"
+                      ></video>
+                  <div class="hover-prompt">Click to watch with sound</div>
+              </div>
+          </div>
+          <div class="tile reveal">
+              <h2>Configure switches in bulk and save hours of admin time (36s)</h2>
+              <div class="video-wrapper">
+                  <video 
+                      src="{{ url_for('static', filename='videos/bulk-switchport.mp4') }}"
+                      muted
+                      playsinline
+                      preload="metadata"
+                      onmouseover="this.play()" 
+                      onmouseout="this.pause(); this.currentTime = 0;"
+                      onclick="this.muted=false;this.requestFullscreen();"
+                  ></video>
+                  <div class="hover-prompt">Click to watch with sound</div>
+              </div>
+          </div>
+          <div class="tile reveal">
+              <h2>Cut energy costs in a few clicks with switchport schedules (27s)</h2>
+              <div class="video-wrapper">
+                  <video 
+                      src="{{ url_for('static', filename='videos/port-schedules.mp4') }}"
+                      muted
+                      playsinline
+                      preload="metadata"
+                      onmouseover="this.play()" 
+                      onmouseout="this.pause(); this.currentTime = 0;"
+                      onclick="this.muted=false;this.requestFullscreen();"
+                  ></video>
+                  <div class="hover-prompt">Click to watch with sound</div>
+              </div>
+          </div>
+          <div class="tile reveal">
+              <h2>Deploy cameras in minutes with plug-and-play MV security (47s)</h2>
+              <div class="video-wrapper">
+                  <video 
+                      src="{{ url_for('static', filename='videos/mv-plug-play.mp4') }}"
+                      muted
+                      playsinline
+                      preload="metadata"
+                      onmouseover="this.play()" 
+                      onmouseout="this.pause(); this.currentTime = 0;"
+                      onclick="this.muted=false;this.requestFullscreen();"
+                      ></video>
+                  <div class="hover-prompt">Click to watch with sound</div>
+              </div>
+          </div>
+          <div class="tile reveal">
+              <h2>One sensor with multiple use cases for safer, comfier schools (41s)</h2>
+              <div class="video-wrapper">
+                  <video 
+                      src="{{ url_for('static', filename='videos/mt15-features.mp4') }}"
+                      muted
+                      playsinline
+                      preload="metadata"
+                      onmouseover="this.play()" 
+                      onmouseout="this.pause(); this.currentTime = 0;"
+                      onclick="this.muted=false;this.requestFullscreen();"
+                      ></video>
+                  <div class="hover-prompt">Click to watch with sound</div>
+              </div>
+          </div>
+      </section>
+      
+      <section id="stories" class="case-studies">
+          <h2 style="text-align: center; margin-bottom: 1.5rem;">Success stories of Cisco in UK Schools</h2>
+      
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem 2rem; max-width: 1080px; margin: 0 auto 4rem;">
+              <a href="https://meraki.cisco.com/en-uk/customers/wrexham-county-borough-council/" target="_blank" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 2rem; text-align: center; border-radius: 12px;">
+                      <h3 style="margin-bottom: 0.5rem;">Wrexham County Borough Council</h3>
+                      <p>Rethinking IT infrastructure to reduce cost and carbon emissions across 70 schools</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/en-uk/customers/langley-school/" target="_blank" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 2rem; text-align: center; border-radius: 12px;">
+                      <h3 style="margin-bottom: 0.5rem;">Langley School</h3>
+                      <p>Adding a digital layer to enhance the traditional learning experience</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/en-uk/customers/forest-of-dean-trust-and-redway-networks/" target="_blank" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 2rem; text-align: center; border-radius: 12px;">
+                      <h3 style="margin-bottom: 0.5rem;">Forest of Dean Trust and Redway Networks</h3>
+                      <p>Delivering secure digital learning environments with the help of future-proofed technology</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/en-uk/customers/cirencester-college/" target="_blank" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 2rem; text-align: center; border-radius: 12px;">
+                      <h3 style="margin-bottom: 0.5rem;">Cirencester College</h3>
+                      <p>Providing full WiFi coverage across 14 acres for 1800+ staff and students</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/customers/burton-college/" target="_blank" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 2rem; text-align: center; border-radius: 12px;">
+                      <h3 style="margin-bottom: 0.5rem;">Burton College</h3>
+                      <p>Improving higher education Wi-Fi network while eliminating need for dedicated staff</p>
+                  </div>
+              </a>
+          </div>
+      </section>
+      
+      {% endblock %}
+    meet-the-team.html
+      {% extends "base.html" %}
+      {% block title %}Meet the Team{% endblock %}
+      
+      {% block content %}
+      <section class="content">
+          <h2 class="reveal" style="text-align: center; margin-bottom: 2.5rem;">Our UKI Education Team</h2>
+          <p class="reveal" style="max-width: 800px; margin: 0 auto 2rem; text-align: center;">
+          Meet our team of Cisco experts, who are always on-hand to setup solution demonstrations, free trials and product recommendations for your learning environment.
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; max-width: 960px; margin: 0 auto;">
+      
+              <div class="product-tile reveal" style="text-align: center; padding: 2rem; border-radius: 12px;">
+                  <img src="/static/images/marianne.png" alt="Marianne" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+                  <h3 style="margin-bottom: 0.3rem;">Marianne Cowie</h3>
+                  <p>Sales Leader – Primary Schools</p>
+                  <a href="https://www.linkedin.com/in/marianne-cowie-069131137/" target="_blank">Connect on LinkedIn</a>
+              </div>
+      
+              <div class="product-tile reveal" style="text-align: center; padding: 2rem; border-radius: 12px;">
+                  <img src="/static/images/paul.png" alt="Paul" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+                  <h3 style="margin-bottom: 0.3rem;">Paul Jones</h3>
+                  <p>Sales Leader – Secondary & Colleges</p>
+                  <a href="https://www.linkedin.com/in/paul-jones-5257266/" target="_blank">Connect on LinkedIn</a>
+              </div>
+      
+              <div class="product-tile reveal" style="text-align: center; padding: 2rem; border-radius: 12px;">
+                  <img src="/static/images/dan.png" alt="Dan" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+                  <h3 style="margin-bottom: 0.3rem;">Dan Nunn</h3>
+                  <p>Account Executive – Secondary & Colleges</p>
+                  <a href="https://www.linkedin.com/in/daniel-nunn-827bb014a/" target="_blank">Connect on LinkedIn</a>
+              </div>
+      
+              <div class="product-tile reveal" style="text-align: center; padding: 2rem; border-radius: 12px;">
+                  <img src="/static/images/shimon.png" alt="Shimon" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+                  <h3 style="margin-bottom: 0.3rem;">Shimon Kwalu Amokye</h3>
+                  <p>Account Executive – UK South</p>
+                  <a href="https://www.linkedin.com/in/shimonkwaluamokye/" target="_blank">Connect on LinkedIn</a>
+              </div>
+      
+              <div class="product-tile reveal" style="text-align: center; padding: 2rem; border-radius: 12px;">
+                  <img src="/static/images/rhiona.png" alt="Rhiona" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+                  <h3 style="margin-bottom: 0.3rem;">Rhiona Pikeur</h3>
+                  <p>Account Executive – UK North</p>
+                  <a href="https://www.linkedin.com/in/rhionapikeur/" target="_blank">Connect on LinkedIn</a>
+              </div>
+      
+              <div class="product-tile reveal" style="text-align: center; padding: 2rem; border-radius: 12px;">
+                  <img src="/static/images/ben.png" alt="Ben" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+                  <h3 style="margin-bottom: 0.3rem;">Ben Blackburn</h3>
+                  <p>Account Executive – UK South</p>
+                  <a href="https://www.linkedin.com/in/benjamin-blackburn-43b81414b/" target="_blank">Connect on LinkedIn</a>
+              </div>
+      
+              <div class="product-tile reveal" style="text-align: center; padding: 2rem; border-radius: 12px;">
+                  <img src="/static/images/archit.png" alt="Archit" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;">
+                  <h3 style="margin-bottom: 0.3rem;">Archit Sachdeva</h3>
+                  <p>Solutions Engineer & Technical Support</p>
+                  <a href="https://www.linkedin.com/in/architsach/" target="_blank">Connect on LinkedIn</a>
+              </div>
+      
+          </div>
+      </section>
+      {% endblock %}
+    products.html
+      {% extends "base.html" %}
+      {% block title %}Products{% endblock %}
+      
+      {% block content %}
+      <section class="content">
+          <h2 class="reveal" style="text-align: center; margin-bottom: 0.5rem;">Cisco in Education:</h2>
+          <p class="reveal" style="max-width: 800px; margin: 0 auto 2rem; text-align: center; font-weight: normal;">
+          Our full-stack Cisco platform supports safer schools, smarter IT, and sustainable infrastructure—covering wireless, switching, IoT, filtering and secure access in one place.
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1080px; margin: 0 auto;">
+              <a href="https://meraki.cisco.com/en-uk/product/wi-fi/indoor-access-points/cw9172i/" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 1.5rem; border-radius: 12px; text-align: center;">
+                      <h3 style="margin-bottom: 0.5rem;">Meraki Wi-Fi 7</h3>
+                      <p>10-year ready wireless for 4K/8K streaming, and AR/VR applications</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/en-uk/products/sensors/" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 1.5rem; border-radius: 12px; text-align: center;">
+                      <h3 style="margin-bottom: 0.5rem;">Meraki MT Sensors</h3>
+                      <p>Monitoring and alerts for vaping, CO2, temperature, doors opening and more</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/en-uk/products/smart-cameras/" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 1.5rem; border-radius: 12px; text-align: center;">
+                      <h3 style="margin-bottom: 0.5rem;">Meraki MV Cameras</h3>
+                      <p>Plug-and-play cameras with motion search for rapid incident resolution</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/en-uk/products/switches/" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 1.5rem; border-radius: 12px; text-align: center;">
+                      <h3 style="margin-bottom: 0.5rem;">Meraki Switching</h3>
+                      <p>Future-ready switching to support device-rich networks and Wi-Fi 7</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/products/security-sd-wan/models/" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 1.5rem; border-radius: 12px; text-align: center;">
+                      <h3 style="margin-bottom: 0.5rem;">Meraki MX</h3>
+                      <p>Firewall, content filtering & SD-WAN to keep students safe with unified policies</p>
+                  </div>
+              </a>
+              <a href="https://meraki.cisco.com/en-uk/products/systems-manager/" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 1.5rem; border-radius: 12px; text-align: center;">
+                      <h3 style="margin-bottom: 0.5rem;">SME (Systems Manager)</h3>
+                      <p>Device management to safeguard student laptops & tablets centrally</p>
+                  </div>
+              </a>
+              <a href="https://umbrella.cisco.com/" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 1.5rem; border-radius: 12px; text-align: center;">
+                      <h3 style="margin-bottom: 0.5rem;">Umbrella</h3>
+                      <p>DNS-layer malware protection and content filtering for robust safeguarding</p>
+                  </div>
+              </a>
+              <a href="https://duo.com/" style="text-decoration: none;">
+                  <div class="product-tile reveal" style="padding: 1.5rem; border-radius: 12px; text-align: center;">
+                      <h3 style="margin-bottom: 0.5rem;">Duo</h3>
+                      <p>Secure login and MFA for staff & students and device health checks</p>
+                  </div>
+              </a>
+          </div>
+      </section>
+      {% endblock %}
+    stories.html
+      {% extends "base.html" %}
+      {% block title %}Stories{% endblock %}
+      
+      {% block content %}
+          <section class="content">
+              <h2>Case Study Highlights</h2>
+              <h3>Wrexham County Borough Council</h3>
+              <p>Reduced costs and simplified management using Meraki port scheduling.</p>
+      
+              <h3>International School Carinthia (ISC) Velden</h3>
+              <p>Future-proofed campus with 10-year-ready Wi-Fi 7 and secure infrastructure.</p>
+          </section>
+      {% endblock %}
+    trial.html
+      {% extends "base.html" %}
+      {% block title %}Trial{% endblock %}
+      
+      {% block content %}
+      <section class="content">
+          <h2 class="reveal" style="text-align: center; margin-bottom: 1rem;">Request a Free Trial</h2>
+          <p class="reveal" style="text-align: center; max-width: 600px; margin: 0 auto 2rem;">
+              Book a demo to learn more about our solutions from our product specialists.<br><br>By the end of the demo, you'll know if you're eligible for a <strong>free 30-day trial</strong> of any Cisco solution.
+          </p>
+          <form class="reveal" style="max-width: 500px; margin: 0 auto;">
+              <label for="name">Full Name:</label><br>
+              <input type="text" id="name" name="name" required style="width: 100%; padding: 0.5rem;"><br><br>
+      
+              <label for="email">School Email:</label><br>
+              <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem;"><br><br>
+      
+              <label for="interest">Which product are you most interested in?</label><br>
+              <select id="interest" name="interest" required style="width: 100%; padding: 0.5rem;">
+                  <option value="">Select a product</option>
+                  <option>Meraki Wi-Fi</option>
+                  <option>MV Cameras</option>
+                  <option>MT Sensors</option>
+                  <option>Umbrella</option>
+                  <option>Duo</option>
+              </select><br><br>
+      
+              <button type="submit" style="padding: 0.7rem 1.5rem;">Request Trial</button>
+          </form>
+      </section>
+      {% endblock %}
+    webinar.html
+      {% extends "base.html" %}
+      {% block title %}Webinar Giveaway{% endblock %}
+      
+      {% block content %}
+      <section class="content">
+          <h2 class="reveal" style="text-align: center; margin-bottom: 1rem;">Sign up for our Education Webinar</h2>
+          <p class="reveal" style="text-align: center; max-width: 600px; margin: 0 auto 2rem;">
+              Join our upcoming webinar to learn about how Cisco is transforming digital learning.<br><br>By signing up, you'll be entered in a draw to win a <strong>FREE Meraki MT15 sensor</strong> (Air Quality + CO₂) for your school.
+          </p>
+          <form class="reveal" style="max-width: 500px; margin: 0 auto;">
+              <label for="name">Full Name:</label><br>
+              <input type="text" id="name" name="name" required style="width: 100%; padding: 0.5rem;"><br><br>
+      
+              <label for="email">School Email:</label><br>
+              <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem;"><br><br>
+      
+              <label for="role">Your Role:</label><br>
+              <select id="role" name="role" required style="width: 100%; padding: 0.5rem;">
+                  <option value="">Select your role</option>
+                  <option>IT Manager</option>
+                  <option>Senior Leadership Team</option>
+                  <option>Teacher</option>
+                  <option>Governor</option>
+                  <option>Other</option>
+              </select><br><br>
+      
+              <label>
+                  <input type="checkbox" name="marketing" required>
+                  By signing this form, I agree to receive marketing communications from Cisco.
+              </label><br><br>
+      
+              <button type="submit" style="padding: 0.7rem 1.5rem;">Register for Webinar</button>
+          </form>
+      </section>
+      {% endblock %}
+  fonts/
+    Sharp Sans Bold Italic.otf [skipped]
+    Sharp Sans ExtraBold Italic.otf [skipped]
+    Sharp Sans Extrabold.otf [skipped]
+    Sharp Sans Italic.otf [skipped]
+    Sharp Sans Light Italic.otf [skipped]
+    Sharp Sans Light.otf [skipped]
+    Sharp Sans Medium Italic.otf [skipped]
+    Sharp Sans Medium.otf [skipped]
+    Sharp Sans Semibold Italic.otf [skipped]
+    Sharp Sans Semibold.otf [skipped]
+    Sharp Sans Thin Italic.otf [skipped]
+    Sharp Sans Thin.otf [skipped]
+    Sharp Sans.otf [skipped]
+    SharpSansBold.otf [skipped]

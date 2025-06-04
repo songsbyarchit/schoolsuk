@@ -4,7 +4,7 @@
 {% block content %}
 
     <h1 class="reveal" style="text-align: center; font-size: 1.8rem; margin-top: 2.5rem; margin-left: 25rem; margin-right: 25rem;">
-        Disover how Cisco powers simple, secure and scalable digital teaching & learning in UK schools,<br>in under a minute...
+        Disover how Cisco powers simple, secure & scalable digital teaching & learning<br>in under a minute...
     </h1>
 <section class="video-grid">
     <div class="tile reveal">
@@ -84,41 +84,28 @@
     </div>
 </section>
 
-<section id="stories" class="case-studies">
-    <h2 style="text-align: center; margin-bottom: 1.5rem;">Success stories of Cisco in UK Schools</h2>
+<section id="stories">
+    {% include 'stories.html' %}
+</section>
 
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem 2rem; max-width: 1080px; margin: 0 auto 4rem;">
-        <a href="https://meraki.cisco.com/en-uk/customers/wrexham-county-borough-council/" target="_blank" style="text-decoration: none;">
-            <div class="product-tile reveal" style="padding: 2rem; text-align: center; border-radius: 12px;">
-                <h3 style="margin-bottom: 0.5rem;">Wrexham County Borough Council</h3>
-                <p>Rethinking IT infrastructure to reduce cost and carbon emissions across 70 schools</p>
-            </div>
-        </a>
-        <a href="https://meraki.cisco.com/en-uk/customers/langley-school/" target="_blank" style="text-decoration: none;">
-            <div class="product-tile reveal" style="padding: 2rem; text-align: center; border-radius: 12px;">
-                <h3 style="margin-bottom: 0.5rem;">Langley School</h3>
-                <p>Adding a digital layer to enhance the traditional learning experience</p>
-            </div>
-        </a>
-        <a href="https://meraki.cisco.com/en-uk/customers/forest-of-dean-trust-and-redway-networks/" target="_blank" style="text-decoration: none;">
-            <div class="product-tile reveal" style="padding: 2rem; text-align: center; border-radius: 12px;">
-                <h3 style="margin-bottom: 0.5rem;">Forest of Dean Trust and Redway Networks</h3>
-                <p>Delivering secure digital learning environments with the help of future-proofed technology</p>
-            </div>
-        </a>
-        <a href="https://meraki.cisco.com/en-uk/customers/cirencester-college/" target="_blank" style="text-decoration: none;">
-            <div class="product-tile reveal" style="padding: 2rem; text-align: center; border-radius: 12px;">
-                <h3 style="margin-bottom: 0.5rem;">Cirencester College</h3>
-                <p>Providing full WiFi coverage across 14 acres for 1800+ staff and students</p>
-            </div>
-        </a>
-        <a href="https://meraki.cisco.com/customers/burton-college/" target="_blank" style="text-decoration: none;">
-            <div class="product-tile reveal" style="padding: 2rem; text-align: center; border-radius: 12px;">
-                <h3 style="margin-bottom: 0.5rem;">Burton College</h3>
-                <p>Improving higher education Wi-Fi network while eliminating need for dedicated staff</p>
-            </div>
-        </a>
-    </div>
+<section id="products">
+    {% include 'products.html' %}
+</section>
+
+<section id="meet-the-team">
+    {% include 'meet-the-team.html' %}
+</section>
+
+<section id="trial">
+    {% include 'trial.html' %}
+</section>
+
+<section id="dfe">
+    {% include 'dfe.html' %}
+</section>
+
+<section id="webinar">
+    {% include 'webinar.html' %}
 </section>
 
 {% endblock %}

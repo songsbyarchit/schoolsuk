@@ -302,3 +302,21 @@ body.dark a:hover {
 html {
     scroll-behavior: smooth;
 }
+
+.download-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #0073e6;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.download-button.hover-effect:hover {
+    background: #005bb5;
+    transform: translateY(-3px);
+    color: white;
+    cursor: pointer;
+}

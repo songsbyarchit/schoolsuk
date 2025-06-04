@@ -252,7 +252,6 @@ body.dark a {
 
 body.dark a:hover {
     color: #fff;
-    font-weight: 600;
 }
 
 .theme-toggle-container {

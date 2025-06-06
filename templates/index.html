@@ -3,86 +3,86 @@
 
 {% block content %}
 
-    <h1 class="reveal" style="text-align: center; font-size: 1.8rem; margin-top: 2.5rem; margin-left: 25rem; margin-right: 25rem;">
-        Disover how Cisco powers simple, secure & scalable digital teaching & learning<br>in under a minute...
-    </h1>
-<section class="video-grid">
-    <div class="tile reveal">
-        <h2>Deploy Wi-Fi 7 to meet modern digital learning needs (59s)</h2>
-        <div class="video-wrapper">
-            <video 
-                src="{{ url_for('static', filename='videos/wifi-7.mp4') }}"
-                muted
-                playsinline
-                preload="metadata"
-                onmouseover="this.play()" 
-                onmouseout="this.pause(); this.currentTime = 0;"
-                onclick="this.muted=false;this.requestFullscreen();"
-                ></video>
-            <div class="hover-prompt">Click to watch with sound</div>
+<h1 class="reveal" style="text-align: center; font-size: 1.8rem; margin-top: 2.5rem; margin-left: 25rem; margin-right: 25rem;">
+    Discover how Cisco powers simple, secure & scalable digital teaching & learning<br>in under a minute...
+</h1>
+
+<section class="video-grid reveal" style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+    <div class="use-case-column" style="flex: 1; min-width: 280px;">
+        <h2 style="text-align:center; font-size: 1.6rem;">Security</h2>
+        <div class="tile reveal">
+            <h5>Deploy cameras in minutes with plug-and-play MV security (47s)</h5>
+            <div class="video-wrapper">
+                <video src="{{ url_for('static', filename='videos/mv-plug-play.mp4') }}" muted playsinline preload="metadata" onmouseover="this.play()" onmouseout="this.pause(); this.currentTime = 0;" onclick="this.muted=false;this.requestFullscreen();"></video>
+                <div class="hover-prompt">Click to watch with sound</div>
+            </div>
+        </div>
+        <div class="tile extra-tile reveal" style="display: none;">
+            <h5>Configure switches in bulk and save hours of admin time</h5>
+            <div class="video-wrapper">
+                <video src="{{ url_for('static', filename='videos/bulk-switchport.mp4') }}" muted playsinline preload="metadata" onmouseover="this.play()" onmouseout="this.pause(); this.currentTime = 0;" onclick="this.muted=false;this.requestFullscreen();"></video>
+                <div class="hover-prompt">Click to watch with sound</div>
+            </div>
+        </div>
+        <div style="text-align:center;">
+            <button class="toggle-more" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; background: #0073e6; color: white; border: none; border-radius: 6px; cursor: pointer;">Show More</button>
         </div>
     </div>
-    <div class="tile reveal">
-        <h2>Configure switches in bulk and save hours of admin time (36s)</h2>
-        <div class="video-wrapper">
-            <video 
-                src="{{ url_for('static', filename='videos/bulk-switchport.mp4') }}"
-                muted
-                playsinline
-                preload="metadata"
-                onmouseover="this.play()" 
-                onmouseout="this.pause(); this.currentTime = 0;"
-                onclick="this.muted=false;this.requestFullscreen();"
-            ></video>
-            <div class="hover-prompt">Click to watch with sound</div>
+
+    <div class="use-case-column" style="flex: 1; min-width: 280px;">
+        <h2 style="text-align:center; font-size: 1.6rem;">Value for Money</h2>
+        <div class="tile reveal">
+            <h5>Cut energy costs in a few clicks with switchport schedule (27s)</h5>
+            <div class="video-wrapper">
+                <video src="{{ url_for('static', filename='videos/port-schedules.mp4') }}" muted playsinline preload="metadata" onmouseover="this.play()" onmouseout="this.pause(); this.currentTime = 0;" onclick="this.muted=false;this.requestFullscreen();"></video>
+                <div class="hover-prompt">Click to watch with sound</div>
+            </div>
+        </div>
+        <div class="tile extra-tile reveal" style="display: none;">
+            <h5>Deploy Wi-Fi 7 to meet modern digital learning needs</h5>
+            <div class="video-wrapper">
+                <video src="{{ url_for('static', filename='videos/wifi-7.mp4') }}" muted playsinline preload="metadata" onmouseover="this.play()" onmouseout="this.pause(); this.currentTime = 0;" onclick="this.muted=false;this.requestFullscreen();"></video>
+                <div class="hover-prompt">Click to watch with sound</div>
+            </div>
+        </div>
+        <div style="text-align:center;">
+            <button class="toggle-more" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; background: #0073e6; color: white; border: none; border-radius: 6px; cursor: pointer;">Show More</button>
         </div>
     </div>
-    <div class="tile reveal">
-        <h2>Cut energy costs in a few clicks with switchport schedules (27s)</h2>
-        <div class="video-wrapper">
-            <video 
-                src="{{ url_for('static', filename='videos/port-schedules.mp4') }}"
-                muted
-                playsinline
-                preload="metadata"
-                onmouseover="this.play()" 
-                onmouseout="this.pause(); this.currentTime = 0;"
-                onclick="this.muted=false;this.requestFullscreen();"
-            ></video>
-            <div class="hover-prompt">Click to watch with sound</div>
+
+    <div class="use-case-column" style="flex: 1; min-width: 280px;">
+        <h2 style="text-align:center; font-size: 1.6rem;">Sustainability</h2>
+        <div class="tile reveal">
+            <h5>One sensor with multiple use cases for safer, comfier schools (40s)</h5>
+            <div class="video-wrapper">
+                <video src="{{ url_for('static', filename='videos/mt15-features.mp4') }}" muted playsinline preload="metadata" onmouseover="this.play()" onmouseout="this.pause(); this.currentTime = 0;" onclick="this.muted=false;this.requestFullscreen();"></video>
+                <div class="hover-prompt">Click to watch with sound</div>
+            </div>
         </div>
-    </div>
-    <div class="tile reveal">
-        <h2>Deploy cameras in minutes with plug-and-play MV security (47s)</h2>
-        <div class="video-wrapper">
-            <video 
-                src="{{ url_for('static', filename='videos/mv-plug-play.mp4') }}"
-                muted
-                playsinline
-                preload="metadata"
-                onmouseover="this.play()" 
-                onmouseout="this.pause(); this.currentTime = 0;"
-                onclick="this.muted=false;this.requestFullscreen();"
-                ></video>
-            <div class="hover-prompt">Click to watch with sound</div>
+        <div class="tile extra-tile reveal" style="display: none;">
+            <h5>Cut energy costs in a few clicks with switchport schedules</h5>
+            <div class="video-wrapper">
+                <video src="{{ url_for('static', filename='videos/port-schedules.mp4') }}" muted playsinline preload="metadata" onmouseover="this.play()" onmouseout="this.pause(); this.currentTime = 0;" onclick="this.muted=false;this.requestFullscreen();"></video>
+                <div class="hover-prompt">Click to watch with sound</div>
+            </div>
         </div>
-    </div>
-    <div class="tile reveal">
-        <h2>One sensor with multiple use cases for safer, comfier schools (41s)</h2>
-        <div class="video-wrapper">
-            <video 
-                src="{{ url_for('static', filename='videos/mt15-features.mp4') }}"
-                muted
-                playsinline
-                preload="metadata"
-                onmouseover="this.play()" 
-                onmouseout="this.pause(); this.currentTime = 0;"
-                onclick="this.muted=false;this.requestFullscreen();"
-                ></video>
-            <div class="hover-prompt">Click to watch with sound</div>
+        <div style="text-align:center;">
+            <button class="toggle-more" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; background: #0073e6; color: white; border: none; border-radius: 6px; cursor: pointer;">Show More</button>
         </div>
     </div>
 </section>
+
+<script>
+document.querySelectorAll('.toggle-more').forEach(button => {
+    button.addEventListener('click', () => {
+        const column = button.closest('.use-case-column');
+        const extra = column.querySelector('.extra-tile');
+        const showing = extra.style.display === 'block';
+        extra.style.display = showing ? 'none' : 'block';
+        button.textContent = showing ? 'Show More' : 'Show Less';
+    });
+});
+</script>
 
 <section id="stories" style="margin: 4rem 0;">
     {% include 'stories.html' %}
